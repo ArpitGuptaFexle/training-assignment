@@ -10,6 +10,7 @@
 	</types>
 	<types>
 		<members>Student1__c</members>
+		<members>Teacher__c</members>
 		<name>CustomObject</name>
 	</types>
 	<types>
