@@ -6,6 +6,7 @@
 	</types>
 	<types>
 		<members>DreamWorld</members>
+		<members>Teacher</members>
 		<name>CustomApplication</name>
 	</types>
 	<types>
@@ -16,6 +17,11 @@
 	<types>
 		<members>Student1__c</members>
 		<name>CustomTab</name>
+	</types>
+	<types>
+		<members>DreamWorld_UtilityBar</members>
+		<members>Teacher_UtilityBar</members>
+		<name>FlexiPage</name>
 	</types>
 	<version>60.0</version>
 </Package>
