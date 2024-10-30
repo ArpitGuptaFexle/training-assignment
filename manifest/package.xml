@@ -5,8 +5,16 @@
 		<name>ApexClass</name>
 	</types>
 	<types>
-		<members>Student__c</members>
+		<members>DreamWorld</members>
+		<name>CustomApplication</name>
+	</types>
+	<types>
+		<members>Student1__c</members>
 		<name>CustomObject</name>
+	</types>
+	<types>
+		<members>Student1__c</members>
+		<name>CustomTab</name>
 	</types>
 	<version>60.0</version>
 </Package>
