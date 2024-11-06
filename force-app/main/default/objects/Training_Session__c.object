@@ -154,6 +154,30 @@
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
     <fields>
+        <fullName>Average_Rating__c</fullName>
+        <externalId>false</externalId>
+        <formula>Sum_Rating__c  /  Count_Attendee__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Average Rating</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Count_Attendee__c</fullName>
+        <externalId>false</externalId>
+        <label>Count Attendee</label>
+        <summaryForeignKey>Attendee__c.Training_Session__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
         <fullName>Location__c</fullName>
         <displayLocationInDecimal>true</displayLocationInDecimal>
         <externalId>false</externalId>
@@ -184,6 +208,42 @@
         <trackTrending>false</trackTrending>
         <type>Date</type>
     </fields>
+    <fields>
+        <fullName>Sum_Rating__c</fullName>
+        <externalId>false</externalId>
+        <label>Sum Rating</label>
+        <summarizedField>Feedback__c.Rating__c</summarizedField>
+        <summaryForeignKey>Feedback__c.Training_Session__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Training_Session_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Training Session Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Workshop</fullName>
+                    <default>false</default>
+                    <label>Workshop</label>
+                </value>
+                <value>
+                    <fullName>Webinar</fullName>
+                    <default>false</default>
+                    <label>Webinar</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
     <label>Training Session</label>
     <listViews>
         <fullName>All</fullName>
@@ -196,7 +256,47 @@
         <type>Text</type>
     </nameField>
     <pluralLabel>Training Sessions</pluralLabel>
+    <recordTypeTrackHistory>false</recordTypeTrackHistory>
+    <recordTypes>
+        <fullName>Webinar</fullName>
+        <active>true</active>
+        <label>Webinar</label>
+        <picklistValues>
+            <picklist>Training_Session_Type__c</picklist>
+            <values>
+                <fullName>Webinar</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Workshop</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Workshops</fullName>
+        <active>true</active>
+        <label>Workshops</label>
+        <picklistValues>
+            <picklist>Training_Session_Type__c</picklist>
+            <values>
+                <fullName>Webinar</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Workshop</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
     <searchLayouts/>
     <sharingModel>ReadWrite</sharingModel>
+    <validationRules>
+        <fullName>Session_Date</fullName>
+        <active>true</active>
+        <description>To Ensure Session Date is in Future</description>
+        <errorConditionFormula>LastActivityDate  &lt;  TODAY()</errorConditionFormula>
+        <errorMessage>Session Date should be in Future !!</errorMessage>
+    </validationRules>
     <visibility>Public</visibility>
 </CustomObject>
