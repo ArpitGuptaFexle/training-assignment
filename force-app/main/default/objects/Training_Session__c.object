@@ -220,10 +220,10 @@
         <type>Summary</type>
     </fields>
     <fields>
-        <fullName>Training_Session_Type__c</fullName>
+        <fullName>Training_Topics__c</fullName>
         <externalId>false</externalId>
-        <label>Training Session Type</label>
-        <required>false</required>
+        <label>Training Topics</label>
+        <required>true</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -232,14 +232,39 @@
             <valueSetDefinition>
                 <sorted>false</sorted>
                 <value>
-                    <fullName>Workshop</fullName>
+                    <fullName>Page Layouts</fullName>
                     <default>false</default>
-                    <label>Workshop</label>
+                    <label>Page Layouts</label>
                 </value>
                 <value>
-                    <fullName>Webinar</fullName>
+                    <fullName>Validation Rules</fullName>
                     <default>false</default>
-                    <label>Webinar</label>
+                    <label>Validation Rules</label>
+                </value>
+                <value>
+                    <fullName>Record Types</fullName>
+                    <default>false</default>
+                    <label>Record Types</label>
+                </value>
+                <value>
+                    <fullName>Custom Fields</fullName>
+                    <default>false</default>
+                    <label>Custom Fields</label>
+                </value>
+                <value>
+                    <fullName>Apex</fullName>
+                    <default>false</default>
+                    <label>Apex</label>
+                </value>
+                <value>
+                    <fullName>Triggers</fullName>
+                    <default>false</default>
+                    <label>Triggers</label>
+                </value>
+                <value>
+                    <fullName>Flows</fullName>
+                    <default>false</default>
+                    <label>Flows</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -262,13 +287,21 @@
         <active>true</active>
         <label>Webinar</label>
         <picklistValues>
-            <picklist>Training_Session_Type__c</picklist>
+            <picklist>Training_Topics__c</picklist>
             <values>
-                <fullName>Webinar</fullName>
+                <fullName>Custom Fields</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Workshop</fullName>
+                <fullName>Page Layouts</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Record Types</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Validation Rules</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -278,13 +311,33 @@
         <active>true</active>
         <label>Workshops</label>
         <picklistValues>
-            <picklist>Training_Session_Type__c</picklist>
+            <picklist>Training_Topics__c</picklist>
             <values>
-                <fullName>Webinar</fullName>
+                <fullName>Apex</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>Workshop</fullName>
+                <fullName>Custom Fields</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Flows</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Page Layouts</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Record Types</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Triggers</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Validation Rules</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
