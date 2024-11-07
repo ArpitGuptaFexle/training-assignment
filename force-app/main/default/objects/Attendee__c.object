@@ -152,7 +152,7 @@
     <enableSearch>false</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
-    <externalSharingModel>Private</externalSharingModel>
+    <externalSharingModel>ControlledByParent</externalSharingModel>
     <fields>
         <fullName>Email__c</fullName>
         <externalId>false</externalId>
@@ -164,17 +164,6 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Name__c</fullName>
-        <externalId>false</externalId>
-        <label>Name</label>
-        <length>100</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>Phone__c</fullName>
         <externalId>false</externalId>
         <label>Phone</label>
@@ -182,6 +171,20 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Phone</type>
+    </fields>
+    <fields>
+        <fullName>Training_Session__c</fullName>
+        <externalId>false</externalId>
+        <label>Training Session</label>
+        <referenceTo>Training_Session__c</referenceTo>
+        <relationshipLabel>Attendees</relationshipLabel>
+        <relationshipName>Attendees</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
     </fields>
     <label>Attendee</label>
     <listViews>
@@ -196,6 +199,13 @@
     </nameField>
     <pluralLabel>Attendees</pluralLabel>
     <searchLayouts/>
-    <sharingModel>ReadWrite</sharingModel>
+    <sharingModel>ControlledByParent</sharingModel>
+    <validationRules>
+        <fullName>Email_Id</fullName>
+        <active>true</active>
+        <description>To ensure email addresses follow a proper format !!</description>
+        <errorConditionFormula>NOT(REGEX(Email__c , &quot;[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}&quot;))</errorConditionFormula>
+        <errorMessage>Ensure email addresses follow a proper format</errorMessage>
+    </validationRules>
     <visibility>Public</visibility>
 </CustomObject>
