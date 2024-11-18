@@ -189,6 +189,17 @@
         <type>Location</type>
     </fields>
     <fields>
+        <fullName>Locations__c</fullName>
+        <externalId>false</externalId>
+        <label>Loca</label>
+        <length>100</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Name__c</fullName>
         <externalId>false</externalId>
         <label>Name</label>
@@ -272,6 +283,8 @@
     <label>Training Session</label>
     <listViews>
         <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Locations__c</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
     </listViews>
@@ -282,6 +295,30 @@
     </nameField>
     <pluralLabel>Training Sessions</pluralLabel>
     <recordTypeTrackHistory>false</recordTypeTrackHistory>
+    <recordTypes>
+        <fullName>We</fullName>
+        <active>true</active>
+        <label>We</label>
+        <picklistValues>
+            <picklist>Training_Topics__c</picklist>
+            <values>
+                <fullName>Custom Fields</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Page Layouts</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Record Types</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Validation Rules</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
     <recordTypes>
         <fullName>Webinar</fullName>
         <active>true</active>
@@ -302,6 +339,26 @@
             </values>
             <values>
                 <fullName>Validation Rules</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Wo</fullName>
+        <active>true</active>
+        <label>Wo</label>
+        <picklistValues>
+            <picklist>Training_Topics__c</picklist>
+            <values>
+                <fullName>Apex</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Flows</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Triggers</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -343,7 +400,7 @@
         </picklistValues>
     </recordTypes>
     <searchLayouts/>
-    <sharingModel>ReadWrite</sharingModel>
+    <sharingModel>Read</sharingModel>
     <validationRules>
         <fullName>Session_Date</fullName>
         <active>true</active>
