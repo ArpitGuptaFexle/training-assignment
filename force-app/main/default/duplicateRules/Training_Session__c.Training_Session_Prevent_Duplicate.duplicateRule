@@ -10,7 +10,7 @@
         <matchingRule>Training_Session_Duplicate_Check</matchingRule>
         <objectMapping xsi:nil="true"/>
     </duplicateRuleMatchRules>
-    <isActive>true</isActive>
+    <isActive>false</isActive>
     <masterLabel>Training_Session_Prevent_Duplicate</masterLabel>
     <operationsOnUpdate>Alert</operationsOnUpdate>
     <securityOption>EnforceSharingRules</securityOption>
