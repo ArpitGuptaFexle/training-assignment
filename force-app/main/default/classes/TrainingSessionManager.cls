@@ -38,7 +38,7 @@ public class TrainingSessionManager {
             
         	insert trainingSessionList;
     	}catch(Exception e){
-            
+
             System.debug(e);
         }
 	}
@@ -367,3 +367,4 @@ public class TrainingSessionManager {
         System.debug(trainingSessionSet);
     }
 }
+//End oof Code
