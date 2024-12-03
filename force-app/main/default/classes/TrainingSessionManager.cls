@@ -40,13 +40,13 @@ public class TrainingSessionManager {
         List<Training_Session__c> trainingSessionList = new List<Training_Session__c>();
         
         for(Integer i=0; i<5; i++){
-                   // Training_Session__c trainingSession= new Training_Session__c();
-                   // trainingSession.Locations__c='Location xyz'+i;
-                   //trainingSession.Name = 'Trainee'+ i;
+                // Training_Session__c trainingSession= new Training_Session__c();
+                // trainingSession.Locations__c='Location xyz'+i;
+                //trainingSession.Name = 'Trainee'+ i;
  
-           trainingSessionList.add(new Training_Session__c (Name= trainingSessionName +(i+1),Locations__c=locationName+(i+1)));
+            trainingSessionList.add(new Training_Session__c (Name= trainingSessionName +(i+1),Locations__c=locationName+(i+1)));
             
-                    //trainingSessionList.add(new Training_Session__c());    
+                //trainingSessionList.add(new Training_Session__c());    
         }
         try{
             
@@ -58,7 +58,7 @@ public class TrainingSessionManager {
             System.debug(e);
             
         }
-        }
+    }
     
     /**
     *   @description    :   This method use to Read the records from training Session
@@ -74,8 +74,8 @@ public class TrainingSessionManager {
     public static void readTrainingSession(){
 		
 		List<Training_Session__c> trainingSessions = [SELECT Name, Locations__c, Training_Topics__c, RecordTypeId 
-                                               FROM Training_Session__c 
-                                               LIMIT 5];
+                                                      FROM Training_Session__c 
+                                                      LIMIT 5];
         if(trainingSessions.isEmpty()){
             
             System.debug('No Records Found');
@@ -183,7 +183,7 @@ public class TrainingSessionManager {
     public static void fetchAllTrainingSessions(){
         
         list<Training_Session__c> allTrainingSessions =[SELECT Name,Locations__c,Training_Topics__c,RecordTypeId,(SELECT Name,Email__c 
-                                                                                                                FROM Attendees__r) 
+                                                                                                                  FROM Attendees__r) 
                                                         FROM Training_Session__c ];
         if(!allTrainingSessions.isEmpty()){
             
@@ -212,18 +212,22 @@ public class TrainingSessionManager {
     **/
 
     public static void fetchAllRelatedAttendees() {
-        List<Training_Session__c> trainingSessions = [
-            SELECT Id, Name, (SELECT Name FROM Attendees__r) 
-            FROM Training_Session__c 
-            WHERE Id = :'a05dM0000099s5dQAA'
-            LIMIT 1
+
+        List<Training_Session__c> trainingSessions = [SELECT Id, Name, (SELECT Name 
+                                                                        FROM Attendees__r) 
+                                                      FROM Training_Session__c 
+                                                      WHERE Id = :'a05dM0000099s5dQAA'
+                                                      LIMIT 1
         ];
         
         if (!trainingSessions.isEmpty() && (trainingSessions[0]?.Attendees__r) != null) {
+
             for (Attendee__c attendee : trainingSessions[0].Attendees__r) {
+
                 System.debug( 'Attendee Name: ' + attendee.Name);
             }
         } else {
+
             System.debug('No attendee found for this session.');
         }
     }
@@ -240,6 +244,7 @@ public class TrainingSessionManager {
     **/
 
     public static void bulkInsertTrainingSessions(){
+
         List<Training_Session__c> trainingSessionsToInsert=new List<Training_Session__c>{
             new Training_Session__c(Name='BulkInsert',Locations__c='BulkInsertLocation'),
             new Training_Session__c(Name='BulkInsert1',Locations__c='BulkInsertLocation1'),
@@ -250,11 +255,15 @@ public class TrainingSessionManager {
         Database.SaveResult[] saveResultrainingSession=Database.insert(trainingSessionsToInsert,False);
         
         for(Database.SaveResult sr: saveResultrainingSession){
+
             if(sr.isSuccess()){
+
                 System.debug(System.label.Insertion_Successful+ sr.getID());
             }
             else{
+
                 for(Database.Error err: sr.getErrors()){
+
                      System.debug(err.getStatusCode());
 					 System.debug(err.getFields());
                 }
@@ -275,9 +284,9 @@ public class TrainingSessionManager {
     public static void bulkUpdateTrainingSessions(){
         
         List<Training_Session__c> trainingSessionsToUpdate = [SELECT Name,ID,Locations__c 
-                                                    FROM   Training_Session__c 
-                                                    WHERE  Locations__c 
-                                                    LIKE   'Jaipur%'];
+                                                              FROM   Training_Session__c 
+                                                              WHERE  Locations__c 
+                                                              LIKE   'Jaipur%'];
         if(!trainingSessionsToUpdate.isEmpty()){
             
             for(Training_Session__c trainingSession: trainingSessionsToUpdate){
@@ -318,10 +327,11 @@ public class TrainingSessionManager {
     public static void bulkdelete(){
         
         List<Training_Session__c> trainingSessionsToDelete =[SELECT Id,Name,Locations__c
-                                           		  FROM   Training_Session__c 
-                                            	  WHERE  Name
-                                                  LIKE   'DML%'];
+                                                             FROM   Training_Session__c 
+                                                             WHERE  Name
+                                                             LIKE   'DML%'];
         if (!trainingSessionsToDelete.isEmpty()) {
+
         	Database.DeleteResult[] drList =Database.delete(trainingSessionsToDelete,false);
         
         	for(Database.DeleteResult dr: drList){
@@ -356,10 +366,12 @@ public class TrainingSessionManager {
     public static void fetchSessionDateAndType(){
         //STR 012dM000003l5FRQAY
         //DATE 2024-12-02 
+
         date sessionDate=date.newInstance(2024,12,02);
         list<Training_Session__c> trainingSessions=[SELECT Name, Session_Date__c, Locations__c, RecordTypeId
                                       				FROM   Training_Session__c
                                      				WHERE  Session_Date__c= :sessionDate];
+
         System.debug(trainingSessions);
     }
     
@@ -379,10 +391,12 @@ public class TrainingSessionManager {
         
         List<Training_Session__c> trainingSessionList =[SELECT Name, Session_Date__c, Locations__c, RecordTypeId
                                       					FROM   Training_Session__c];
+
         Set<Training_Session__c> trainingSessionSet = new Set<Training_Session__c>();
         
         for(Training_Session__c trainingSession: trainingSessionList){
             //Added records without any duplicate records
+            
             trainingSessionSet.add(trainingSession);
         }
         
