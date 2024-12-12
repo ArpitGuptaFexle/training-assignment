@@ -154,8 +154,18 @@
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ControlledByParent</externalSharingModel>
     <fields>
+        <fullName>Attendee__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <label>Attendee</label>
+        <referenceTo>Attendee__c</referenceTo>
+        <relationshipLabel>Feedbacks</relationshipLabel>
+        <relationshipName>Feedbacks</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>Comments__c</fullName>
-        <externalId>false</externalId>
         <label>Comments</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -175,7 +185,6 @@
     <fields>
         <fullName>Session__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
-        <externalId>false</externalId>
         <label>Session</label>
         <referenceTo>Training_Session__c</referenceTo>
         <relationshipLabel>Feedbacks</relationshipLabel>
@@ -186,7 +195,6 @@
     </fields>
     <fields>
         <fullName>Training_Session__c</fullName>
-        <externalId>false</externalId>
         <label>Training Session</label>
         <referenceTo>Training_Session__c</referenceTo>
         <relationshipLabel>Feedbacks (Training Session)</relationshipLabel>
