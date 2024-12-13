@@ -9,15 +9,17 @@
  * 
 **/
 trigger AttendeeTrigger on Attendee__c (before insert, before update, before delete, after insert, after update, after delete,after undelete) {
-    if(Trigger.isBefore){
+    
+    new AttendeeTriggerHandler().run();
+    /*if(Trigger.isBefore){
         
 
         }
     if(Trigger.isAfter){
         if(Trigger.isInsert || Trigger.isUpdate || Trigger.isDelete){
-            AttendeeTriggerHandler.handleAttendeeUpdate(Trigger.new, Trigger.old, Trigger.oldMap);
+            AttendeeTriggerHandler.handleAttendeeUpdate(Trigger.new, Trigger.oldMap);
         }
         
-    }
+    }*/
     
 }
