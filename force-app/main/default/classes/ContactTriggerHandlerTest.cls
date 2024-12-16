@@ -17,12 +17,10 @@ public class ContactTriggerHandlerTest {
         insert acc;
         
         contact con=new contact(LastName='Lname',AccountId= acc.id,Email='asdfgy@google.com');
-        insert con;
-        
-        contact con1=new contact(LastName='Lname',AccountId= acc.id,Email='asdfgy@fexle.com');
-                                 
+                          
     	Test.startTest();
         insert con;
+       
         Test.stopTest();
 
         }
