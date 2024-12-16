@@ -19,7 +19,7 @@ public class AttendeeTriggerHelper {
             Attendee__c oldAttendeeRecord = oldMapRecords?.get(att.Id);
             
             if((att.Contact__c != null && att.Training_Session__c != null && (oldMapRecords == null || newlistRecords == null)) ||
-               att.Training_Session__c != oldAttendeeRecord.Training_Session__c || att.Contact__c != oldAttendeeRecord.Contact__c){               //operation
+               att.Training_Session__c != oldAttendeeRecord.Training_Session__c || att.Contact__c != oldAttendeeRecord.Contact__c){               
 
                 if (att.Contact__c != null) {
                     mapContacts.put(att.Contact__c, new Contact(Id = att.Contact__c, Count_Session__c = 0));

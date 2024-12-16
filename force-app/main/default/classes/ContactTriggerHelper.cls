@@ -38,3 +38,5 @@ public class ContactTriggerHelper {
         }
     }
 }
+
+//newCon.Email.substringAfter('@').toLowerCase() != mapOfAccoubtIdAndDomainName.get(newCon.AccountId
