@@ -30,4 +30,7 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
+    <label>API_Settings</label>
+    <pluralLabel>API_Settings</pluralLabel>
+    <visibility>Public</visibility>
 </CustomObject>

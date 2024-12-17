@@ -13,13 +13,11 @@
         <allowDelegate>true</allowDelegate>
         <assignedApprover>
             <approver>
-                <name>arpit.gupta@fexle.com.training.staging</name>
-                <type>user</type>
+                <type>adhoc</type>
             </approver>
-            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
         </assignedApprover>
-        <label>Arpit</label>
-        <name>Arpit</name>
+        <label>Any_User</label>
+        <name>Any_User</name>
     </approvalStep>
     <emailTemplate>unfiled$public/Pending_Approval_Request</emailTemplate>
     <enableMobileDeviceAccess>false</enableMobileDeviceAccess>
