@@ -44,8 +44,8 @@ public class AttendeeTriggerHandlerTest {
         insert con2;
         
         Training_Session__c ts=new Training_Session__c(Training_Topics__c='Page Layouts',
-                                                       Name='Test Training',
-                                                       RecordTypeId='012dM000003l5FRQAY');
+                                                       Name='Test Training'
+                                                       );
         insert ts;
         
         Attendee__c att=new Attendee__c(Email__c='abc@gmail.com',
