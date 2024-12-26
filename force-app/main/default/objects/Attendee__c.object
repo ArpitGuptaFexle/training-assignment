@@ -154,6 +154,29 @@
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ControlledByParent</externalSharingModel>
     <fields>
+        <fullName>Contact_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT(Contact__r.Salutation)+&apos; &apos;+Contact__r.FirstName+&apos; &apos; + Contact__r.LastName</formula>
+        <label>ContactName</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Contact__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <label>Contact</label>
+        <referenceTo>Contact</referenceTo>
+        <relationshipLabel>Attendees</relationshipLabel>
+        <relationshipName>Attendees</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>Email__c</fullName>
         <externalId>false</externalId>
         <label>Email</label>
@@ -165,7 +188,6 @@
     </fields>
     <fields>
         <fullName>Phone__c</fullName>
-        <externalId>false</externalId>
         <label>Phone</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -174,7 +196,6 @@
     </fields>
     <fields>
         <fullName>Training_Session__c</fullName>
-        <externalId>false</externalId>
         <label>Training Session</label>
         <referenceTo>Training_Session__c</referenceTo>
         <relationshipLabel>Attendees</relationshipLabel>
@@ -191,13 +212,16 @@
         <fullName>All</fullName>
         <columns>NAME</columns>
         <columns>Email__c</columns>
+        <columns>Training_Session__c</columns>
+        <columns>Contact__c</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
     </listViews>
     <nameField>
+        <displayFormat>A-{0000}</displayFormat>
         <label>Attendee Name</label>
         <trackHistory>false</trackHistory>
-        <type>Text</type>
+        <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Attendees</pluralLabel>
     <searchLayouts/>

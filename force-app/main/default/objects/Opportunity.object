@@ -8,4 +8,22 @@
         <fields>StageName</fields>
         <label>Key Information Layout</label>
     </compactLayouts>
+    <fields>
+        <fullName>Discount_Approved__c</fullName>
+        <defaultValue>false</defaultValue>
+        <label>Discount Approved</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Discount_Percent__c</fullName>
+        <label>Discount Percent</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
 </CustomObject>
