@@ -17,7 +17,8 @@ public class AttendeeTriggerHandlerTest {
         insert con;
         
         Training_Session__c ts = new Training_Session__c(Training_Topics__c = 'Page Layouts', 
-                                                         Name = 'Test Training');
+                                                         Name = 'Test Training' 
+                                                         );
         insert ts;
         
         Attendee__c att = new Attendee__c(Email__c = 'abc@gmail.com', 
@@ -34,66 +35,90 @@ public class AttendeeTriggerHandlerTest {
     }
     
     @isTest
-    static void updateAttendeeTest(){
+    static void updateAttendeeTest() {
+        List<Contact> contactsToInsert = new List<Contact>();
         
-        contact con =new contact(LastName='Agarwal');
-        insert con;
+        Contact con1 = new Contact(LastName='Agarwal');
+        contactsToInsert.add(con1);
         
-        contact con2 =new contact(LastName='Agarwal2');
-        insert con2;
+        Contact con2 = new Contact(LastName='Agarwal2');
+        contactsToInsert.add(con2);
         
-        Training_Session__c ts=new Training_Session__c(Training_Topics__c='Page Layouts',
-                                                       Name='Test Training'
-                                                       );
+        insert contactsToInsert;
+        
+        Training_Session__c ts = new Training_Session__c(
+            Training_Topics__c='Page Layouts',
+            Name='Test Training'
+        );
         insert ts;
         
-        Attendee__c att=new Attendee__c(Email__c='abc@gmail.com',
-                                        Training_Session__c= ts.id,
-                                        Contact__c=con.Id);
-        insert att;
+        List<Attendee__c> attendeesToInsert = new List<Attendee__c>();
         
-        att.Contact__c=con2.Id;
+        Attendee__c att = new Attendee__c(
+            Email__c='abc@gmail.com',
+            Training_Session__c=ts.Id,
+            Contact__c=con1.Id
+        );
+        attendeesToInsert.add(att);
+        
+        insert attendeesToInsert;
+        
+        att.Contact__c = con2.Id;
         
         Test.startTest();
-
-        update att;
-        List<Contact> attList = [SELECT Id, Count_Session__c FROM Contact WHERE LastName = 'Agarwal2'];
-        Assert.areEqual(1, attList[0].Count_Session__c, 'Contact Count Sesion must be 1');
-
-        Test.stopTest();
         
+        update att;
+        
+        List<Contact> attList = [SELECT Id, Count_Session__c FROM Contact WHERE LastName = 'Agarwal2'];
+        
+        System.assertEquals(1, attList[0].Count_Session__c, 'Contact Count Session must be 1');
+        
+        Test.stopTest();
     }
+
     
     @isTest
-    static void deleteAttendeeTest(){
+    static void deleteAttendeeTest() {
+        List<Contact> contactsToInsert = new List<Contact>();
         
-        contact con =new contact(LastName='Agarwal');
-        insert con;
+        Contact con1 = new Contact(LastName='Agarwal');
+        contactsToInsert.add(con1);
         
-        contact con2 =new contact(LastName='Agarwal2');
-        insert con2;
+        Contact con2 = new Contact(LastName='Agarwal2');
+        contactsToInsert.add(con2);
         
-        Training_Session__c ts=new Training_Session__c(Training_Topics__c='Page Layouts',
-                                                       Name='Test Training', 
-                                                       RecordTypeId='012dM000003l5FRQAY');
+        insert contactsToInsert;
+        
+        Training_Session__c ts = new Training_Session__c(
+            Training_Topics__c='Page Layouts',
+            Name='Test Training', 
+            RecordTypeId='012dM000003l5FRQAY'
+        );
         insert ts;
         
-        Attendee__c att=new Attendee__c(Email__c='abc@gmail.com',
-                                        Training_Session__c= ts.id,
-                                        Contact__c=con.Id);
-        insert att;
+        List<Attendee__c> attendeesToInsert = new List<Attendee__c>();
         
-        att.Contact__c=con2.Id;
+        Attendee__c att = new Attendee__c(
+            Email__c='abc@gmail.com',
+            Training_Session__c=ts.Id,
+            Contact__c=con1.Id
+        );
+        attendeesToInsert.add(att);
+        
+        insert attendeesToInsert;
+        
+        att.Contact__c = con2.Id;
         
         Test.startTest();
-
-        delete att;
-        List<Contact> attList = [SELECT Id, Count_Session__c FROM Contact];
-        Assert.areEqual(0, attList[0].Count_Session__c, 'Contact Count Sesion must be 1');
-
-        Test.stopTest();
         
+        delete att;
+        
+        List<Contact> attList = [SELECT Id, Count_Session__c FROM Contact];
+        System.assertEquals(0, attList[0].Count_Session__c, 'Contact Count Session must be 0');
+        
+        Test.stopTest();
     }
+
     
     @isTest
 	static void handleEmptyContactMapTest() {
