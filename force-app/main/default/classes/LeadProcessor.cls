@@ -9,7 +9,7 @@
  * 
 **/
 global class LeadProcessor implements
-	Database.Batchable<sObject>,Database.Stateful,Schedulable{
+	Database.Batchable<sObject>,Database.Stateful{
     
     global Integer recordsProcessed=0;
     
@@ -33,15 +33,15 @@ global class LeadProcessor implements
         System.debug('Total Records:'+recordsProcessed);
     }
         
-    global void execute(SchedulableContext sc) {
+    /*global void execute(SchedulableContext sc) {
 
         LeadProcessor lp = new LeadProcessor();
         Database.executeBatch(lp, 200);
-       /* String cronExpression = '0 0 2 * * ?'; 
+        String cronExpression = '0 0 2 * * ?'; 
         String jobName = 'LeadProcessorBatchJob';
         LeadProcessor scheduler = new LeadProcessor();
-        System.schedule(jobName, cronExpression, scheduler);*/
-    }
+        System.schedule(jobName, cronExpression, scheduler);
+    }*/
 }
 
 

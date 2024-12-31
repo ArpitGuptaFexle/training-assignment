@@ -38,6 +38,6 @@ public class AccountProcessorTest {
         
         List<Account> accs=[SELECT Id,Number_Of_Contacts__c FROM Account];
         
-        Assert.areEqual(1,accs[0].Number_Of_Contacts__c,'Contact are not Counted Successfully');   
+        Assert.areEqual(1,accs[0].Number_Of_Contacts__c,'Actual Count of Contact Should be 1 but it Showing'+accs[0]);   
     }
 }
