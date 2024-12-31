@@ -1,3 +1,13 @@
+/**
+ *   Description       : This is for Batch Apex Assignment Batch(LeadProcessorSchedule)
+ *
+ *   Created By        : Arpit Gupta
+ *
+ *   Created Date      : 12/18/2024
+ *
+ *   Revision Logs     : V_1.0 - Created - Apex Ass4
+ * 
+**/
 global class LeadProcessorSchedule implements Schedulable {
     
     global void execute(SchedulableContext sc) {
