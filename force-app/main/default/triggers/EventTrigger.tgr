@@ -1,0 +1,25 @@
+trigger EventTrigger on Event (before insert) {
+    
+        if (Trigger.isAfter) {
+        Set<Id> accountIds = new Set<Id>();
+
+        if (Trigger.isInsert || Trigger.isUndelete) {
+            for (Event task : Trigger.new) {
+                if (task.WhatId != null && task.WhatId.getSObjectType() == Account.SObjectType) {
+                    accountIds.add(task.WhatId);
+                }
+            }
+        }
+
+        if (Trigger.isDelete) {
+            for (Event task : Trigger.old) {
+                if (task.WhatId != null && task.WhatId.getSObjectType() == Account.SObjectType) {
+                    accountIds.add(task.WhatId);
+                }
+            }
+        }
+
+        EventTriggerHandler.checkCountEvent(accountIds);
+
+	}
+}
