@@ -1,86 +1,65 @@
-global class AccountSupportScoreBatch implements Database.Batchable<sObject>, Database.Stateful{
+global class AccountSupportScoreBatch implements Database.Batchable<sObject>, Database.Stateful {
     
-    global Decimal Severity = 0;
-    global Date dateAfter30 = System.Today()-30;
-    global Date dateAfter60 = System.Today()-60;
+    global Date dateAfter30 = System.Today() - 30;
+    global Date dateAfter60 = System.Today() - 60;
     
-    global Database.QueryLocator start(Database.BatchableContext bc){
-        
-        String StatusA = 'New';
-        
-        return Database.getQueryLocator('SELECT Id, Priority, Status FROM Case WHERE Status = StatusA');
-        
+    global Database.QueryLocator start(Database.BatchableContext bc) {
+        return Database.getQueryLocator('SELECT Id, AccountId, Priority, CreatedDate FROM Case WHERE Status != \'Closed\'');
     }
     
-    global void execute (Database.BatchableContext bc, List<Case> caseList){
+    global void execute(Database.BatchableContext bc, List<Case> caseList) {
         
-        set<Id> accId = new Set<Id>();
+        Map<Id, Decimal> accountSeverityMap = new Map<Id, Decimal>();
         
-        for(Case c: caseList){
-            
-            if(c.AccountId != NULL && c.Priority != NULL){
+        for (Case c : caseList) {
+            if (c.AccountId != NULL && c.Priority != NULL) {
+                Decimal severity = scoreCalculation(c);
                 
-                if(c.Priority == 'High') {
-                    
-                    if(c.CreatedDate.Date() < dateAfter30){
-                    
-                    Severity += 4;
-                    
-                	}
-                    if(c.CreatedDate.Date() < dateAfter60){
-                        Severity += 2;  
-                    }
+                if (accountSeverityMap.containsKey(c.AccountId)) {
+                    accountSeverityMap.put(c.AccountId, accountSeverityMap.get(c.AccountId) + severity);
+                } else {
+                    accountSeverityMap.put(c.AccountId, severity);
                 }
-                
-                if(c.Priority == 'Medium') {
-                    
-                    if(c.CreatedDate.Date() < dateAfter30){
-                    
-                    Severity += 3;
-                    
-                	}
-                    if(c.CreatedDate.Date() < dateAfter60){
-                        Severity += 1;  
-                    }
-                }
-                
-                if(c.Priority == 'Low') {
-                    
-                    if(c.CreatedDate.Date() < dateAfter30){
-                    
-                    Severity += 2;
-                    
-                	}
-                    if(c.CreatedDate.Date() < dateAfter60){
-                        Severity += 0;  
-                    }
-                }
-               
-                
-                accId.add(c.AccountId);
-            }  
+            }
         }
         
-        List<Account> accList =[SELECT Support_Score__c, Id FROM Account WHERE ID IN : accId];
         
-        for(Account acc: accList){
-            
-            acc.Support_Score__c = acc.Support_Score__c + Severity;
+        List<Account> accList = [SELECT Id, Support_Score__c FROM Account WHERE Id IN :accountSeverityMap.keySet()];
+        
+        for (Account acc : accList) {
+            acc.Support_Score__c = (acc.Support_Score__c != NULL ? acc.Support_Score__c : 0) + accountSeverityMap.get(acc.Id);
         }
         
-        try{
-            
-            UPDATE accList;
+        try {
+            update accList;
+        } catch (DmlException e) {
+            System.debug('Error while updating accounts: ' + e.getMessage());
         }
-        catch(Exception e){
-            System.debug('Got Error :' + e.getMessage());
-        }   
     }
     
-    global void finish(Database.BatchableContext bc){
+    private Decimal scoreCalculation(Case c) {
+        Decimal severity = 0;
         
-        System.debug('Total Severity :' + Severity);
+        if (c.Priority == 'High') {
+            severity += 3;
+        } else if (c.Priority == 'Medium') {
+            severity += 2;
+        } else if (c.Priority == 'Low') {
+            severity += 1;
+        }
         
+        if (c.CreatedDate.Date() >= dateAfter30) {
+            severity += 1;
+        }
+        if (c.CreatedDate.Date() < dateAfter60) {
+            severity -= 1;
+        }
+        
+        return (decimal)severity;
     }
     
+    
+    global void finish(Database.BatchableContext bc) {
+        System.debug('Batch processing completed.');
+    }
 }
