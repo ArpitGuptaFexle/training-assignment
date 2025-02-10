@@ -66,5 +66,10 @@ public class ContactTriggerHandlerTest {
         
         Test.stopTest();
     }
+    
+    @isTest
+    public static void checkPicklist(){
+        
+    }
 
 }
