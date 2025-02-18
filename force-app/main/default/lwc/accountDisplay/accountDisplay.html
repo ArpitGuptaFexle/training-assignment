@@ -1,0 +1,21 @@
+<template>
+        <lightning-card>
+            <lightning-record-view-form object-api-name={objectApiName} record-id={recordId}>
+                <lightning-output-field field-name={nameField}></lightning-output-field>
+                <lightning-output-field field-name={websiteField}></lightning-output-field>
+                <lightning-output-field field-name={phoneField}></lightning-output-field>
+
+                <lightning-button 
+                    variant="brand" 
+                    label="Create Contact" 
+                    title="Primary action" 
+                    onclick={handleClick} 
+                    class="slds-m-left_x-small">
+                </lightning-button>
+
+                <template if:true={isClicked}>
+                    <lightning-modal-body> <c-insert-contact account-id={recordId}></c-insert-contact>  </lightning-modal-body>
+                </template>
+            </lightning-record-view-form>
+        </lightning-card>
+    </template>

@@ -1,0 +1,48 @@
+<template>
+    <lightning-card title="Contact Management" icon-name="standard:contact" >
+        <lightning-layout multiple-rows>
+            <lightning-layout-item size="6" >
+                <lightning-button
+                    variant="brand" 
+                    label="Create Contact" 
+                    title="Primary action" 
+                    onclick={handleClick}>
+                </lightning-button>
+            </lightning-layout-item>
+            <lightning-layout-item size="6">
+                <lightning-input label="Search" 
+                                 placeholder="Type here to search Contacts" 
+                                 value={searchKey}
+                                 onchange={handelSearch}>
+                </lightning-input>
+            </lightning-layout-item>
+            <lightning-layout-item size="12" class="slds-m-top_small">
+                <template if:true={isClicked}>   
+                    <lightning-modal-body>
+                            <lightning-input label="First Name" onchange={fNameChange}></lightning-input> 
+                            <lightning-input class={lNameVal} label="Last Name" onchange={lNameChange} required></lightning-input> 
+                            <lightning-input class={emailVal} label="Email" onchange={emailChange} required></lightning-input>
+                            <lightning-input label="AccountId" class="slds-hidden" value={accountId} required disabled></lightning-input>
+                            <lightning-button type="submit" label="Create New" onclick={handelContactButton}></lightning-button>    
+                    </lightning-modal-body>
+                </template>
+            </lightning-layout-item>
+            <lightning-layout-item size="12">
+                <lightning-card title="Search Results">
+                    <lightning-datatable
+                        key-field="Id"
+                        data={data}
+                        columns={columns}
+                        hide-checkbox-column
+                        sorted-by="FirstName"
+                        sorted-direction="asc">
+                    </lightning-datatable>
+                    <template lwc:if={noRecordsBool}>
+                        <br>
+                        <p style="color:red"><b>No Contact record found</b></p>
+                    </template>
+                </lightning-card>
+            </lightning-layout-item>
+        </lightning-layout>
+    </lightning-card>
+</template>
