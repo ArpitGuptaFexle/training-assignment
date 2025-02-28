@@ -1,0 +1,50 @@
+<template>
+    <lightning-card title="Account Management Wizard" icon-name="standard:account">
+        <lightning-layout multiple-rows class="slds-p-around_small">
+            <lightning-layout-item size="12">
+                <lightning-record-view-form object-api-name={objectApiName} record-id={recordId}>
+                    <lightning-layout multiple-rows class="slds-p-around_small">
+                        <lightning-layout-item size="6">
+                            <lightning-output-field field-name={nameField}></lightning-output-field>
+                        </lightning-layout-item>
+                        <lightning-layout-item size="6"><p>Contact </p>
+                            <lightning-formatted-number field-name={noOfContactField} value={conValue}></lightning-formatted-number>
+                        </lightning-layout-item>
+                        <lightning-layout-item size="6">
+                            <lightning-output-field field-name={descriptionField}></lightning-output-field>
+                        </lightning-layout-item>
+                        <lightning-layout-item size="6">
+                            <lightning-output-field field-name={accountOwnerField}></lightning-output-field>    
+                        </lightning-layout-item>                   
+                    </lightning-layout>
+                  
+                <!--
+                    <lightning-layout multiple-rows class="slds-p-around_small">
+                        <lightning-layout-item size="6"><p>Account Name: </p></lightning-layout-item>
+                        <lightning-layout-item size="6"><lightning-formatted-text value={nameField}></lightning-formatted-text></lightning-layout-item>
+
+                    </lightning-layout>
+                    <lightning-layout multiple-rows class="slds-p-around_small">
+                        <lightning-layout-item size="6"><p>No of Contacts: </p></lightning-layout-item>
+                        <lightning-layout-item size="6"><lightning-formatted-number value={noOfContactField}></lightning-formatted-number></lightning-layout-item>
+
+                    </lightning-layout>
+                    <lightning-layout multiple-rows class="slds-p-around_small">
+                        <lightning-layout-item size="6"><p>Description: </p></lightning-layout-item>
+                        <lightning-layout-item size="6"><lightning-formatted-text value={descriptionField}></lightning-formatted-text></lightning-layout-item>
+
+                    </lightning-layout>
+                    <lightning-layout multiple-rows class="slds-p-around_small">
+                        <lightning-layout-item size="6"><p>Account Owner: </p></lightning-layout-item>
+                        <lightning-layout-item size="6"><lightning-formatted-text value={accountOwnerField}></lightning-formatted-text></lightning-layout-item>
+
+                    </lightning-layout>
+
+                    
+                -->   
+                </lightning-record-view-form>
+            <c-contact-save-form account-id={recordId} onconvalue={handleContactCreated}></c-contact-save-form>
+        </lightning-layout-item>
+    </lightning-layout>
+</lightning-card>
+</template>
