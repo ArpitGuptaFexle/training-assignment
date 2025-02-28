@@ -125,6 +125,48 @@
                 <identifier>RecordDiscount_Approved_cField</identifier>
             </fieldInstance>
         </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldItem>Record.Installation_Account__c</fieldItem>
+                <identifier>RecordInstallation_Account__cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldItem>Record.Shipment_Account__c</fieldItem>
+                <identifier>RecordShipment_Account__cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldItem>Record.Automobile_Tag_Details_1__c</fieldItem>
+                <identifier>RecordAutomobile_Tag_Details_1__cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldItem>Record.Automobile_Tag_Details_2__c</fieldItem>
+                <identifier>RecordAutomobile_Tag_Details_2__cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldItem>Record.Automobile_Tag_Details_3__c</fieldItem>
+                <identifier>RecordAutomobile_Tag_Details_3__cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldItem>Record.Return_To_HQ__c</fieldItem>
+                <identifier>RecordReturn_To_HQ__cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldItem>Record.Parts__c</fieldItem>
+                <identifier>RecordParts__cField</identifier>
+            </fieldInstance>
+        </itemInstances>
         <name>Facet-d813a10e-7800-44a3-8f9a-a15f2e61eb91</name>
         <type>Facet</type>
     </flexiPageRegions>

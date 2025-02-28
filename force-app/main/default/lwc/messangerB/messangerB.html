@@ -1,0 +1,12 @@
+<template>
+    <lightning-card title="Messenger B">
+        <div class="slds-m-around medium">
+            <p>Received Message  :  
+                <lightning-formatted-text value={recievedMessage}> </lightning-formatted-text>
+            </p>
+        </div>
+        <lightning-input label="Message To Send To Component A :" value={bmessageToSend}></lightning-input>
+        <lightning-button label="Send Message" onclick={handelButton}></lightning-button>
+        
+    </lightning-card>
+</template>

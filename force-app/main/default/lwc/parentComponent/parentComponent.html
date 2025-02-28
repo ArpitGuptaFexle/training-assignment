@@ -1,0 +1,7 @@
+<template>
+    <lightning-card>
+            <h1>Hello World!</h1>
+            <lightning-input label="Enter Greetings" value={greeting} onchange={handelGreetingChange}></lightning-input>
+            <c-child-component greeting = {greeting}></c-child-component>
+    </lightning-card>
+</template>
