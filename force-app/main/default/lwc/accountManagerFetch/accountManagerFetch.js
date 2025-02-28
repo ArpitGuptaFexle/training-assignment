@@ -3,7 +3,7 @@ import getAccount from '@salesforce/apex/AccountManagerController.getAccount';
 
 export default class AccountManagerFetch extends LightningElement {
 
-    @track columns = [
+    columns = [
         { label: 'Id', fieldName: 'Id' ,editable: true},
         { label: 'Name', fieldName: 'Name', type: 'text' ,editable: true},
         { label: 'Website', fieldName: 'Website', type: 'url' ,editable: true},
