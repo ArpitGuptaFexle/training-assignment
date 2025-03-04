@@ -1,0 +1,94 @@
+<template>
+    <lightning-card title="Account Wizard" icon-name="standard:account">
+        <div style="height: 300px;">
+        <lightning-datatable key-field="Id" columns={columns} data={accounts} hide-checkbox-column sorted-direction ></lightning-datatable>
+        </div>
+        <lightning-button variant="Brand" label="New Account" onclick={handelAccount}></lightning-button>
+
+        <template if:true={isClicked}>
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                   <header class="slds-modal__header">
+                      <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={hideModalBox}>
+                         <lightning-icon icon-name="utility:close"
+                            alternative-text="close"
+                            variant="inverse"
+                            size="small" ></lightning-icon>
+                         <span class="slds-assistive-text">Close</span>
+                      </button>
+                      <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Create New Account</h2>
+                   </header>
+                   <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1" >
+                      
+                    <lightning-record-edit-form object-api-name="Account" onsuccess={handleAccountSuccess} onerror={handleAccountError}>
+                        <lightning-input-field field-name="Name" required></lightning-input-field>
+                        <lightning-input-field field-name="Website"></lightning-input-field>
+                        <lightning-input-field field-name="Phone"></lightning-input-field>
+                        <lightning-layout>
+
+                            <lightning-layout-item padding="around-small" size="4">
+                                <lightning-button
+                                    class="slds-m-top_small"
+                                    type="submit"
+                                    label="Create New Account"
+                                    onclick={handleRefreshAccount}
+                        ></lightning-button>
+                            </lightning-layout-item>
+                            <lightning-layout-item padding="around-small" size="4">
+                                <lightning-button
+                            class="slds-m-top_small"
+                            type="submit"
+                            label="Create Related Contact"
+                            onclick={handleContact}
+                        ></lightning-button>
+                            </lightning-layout-item>
+                            <lightning-layout-item padding="around-small" size="4">
+                                <lightning-button
+                                class="slds-m-top_small"
+                                type="submit"
+                                label="Close"
+                                onclick={handleclose}
+                            ></lightning-button>
+                            </lightning-layout-item>
+                            
+                                
+                        </lightning-layout>
+                    </lightning-record-edit-form>
+                    <template if:true={isClickedContact}>
+                        <lightning-record-edit-form object-api-name="Contact" onsuccess={handleContactSuccess} onerror={handleContactError}>
+                            <lightning-input-field field-name="LastName" required></lightning-input-field>
+                            <lightning-input-field field-name="Email"></lightning-input-field>
+                            <lightning-input-field field-name="Phone"></lightning-input-field>
+                            <lightning-input-field field-name="AccountId" value={accountId} required disabled></lightning-input-field>
+                            <lightning-layout>
+
+                                <lightning-layout-item padding="around-small" size="6">
+                                    <lightning-button
+                                    class="slds-m-top_small"
+                                    type="submit"
+                                    label="Create New"
+                                ></lightning-button>
+                                </lightning-layout-item>
+                                <lightning-layout-item padding="around-small" size="4">
+                                    <lightning-button
+                                    class="slds-m-top_small"
+                                    type="submit"
+                                    label="Close"
+                                    onclick={handleclose}
+                                ></lightning-button>
+                                </lightning-layout-item>
+                                    
+                            </lightning-layout>
+                            
+                            
+                        </lightning-record-edit-form>
+
+                    </template>
+                   </div>
+                </div>
+             </section>
+             <div class="slds-backdrop slds-backdrop_open"></div>   
+        </template>
+        
+    </lightning-card>
+</template>
